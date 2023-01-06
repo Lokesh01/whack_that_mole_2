@@ -1,5 +1,4 @@
 var res = {
-  HelloWorld_png: "res/HelloWorld.png",
   hole_back_png: "res/hole_back.png",
   hole_front_png: "res/hole_front.png",
   mole_hit_png: "res/mole_hit.png",
