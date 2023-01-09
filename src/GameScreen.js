@@ -156,13 +156,13 @@ var gameScreenLayer = cc.Layer.extend({
         pad_start((minutes + ""), 2, "0") + " : " + pad_start((seconds + ""), 2, "0");
     }, 1);
 
-    //layout
+    //layout for finish button
     var layout = new ccui.Layout();
-    layout.setContentSize(size.width * 0.1, size.height * 0.08);
+    layout.setContentSize(size.width * 0.2, size.height * 0.08);
     layout.setBackGroundColorType(ccui.Layout.BG_COLOR_SOLID);
     layout.setBackGroundColor(cc.color("#850000"));
     layout.setBackGroundColorOpacity(100);
-    layout.setPosition(size.width / 2 - 300, size.height / 2 + 250);
+    layout.setPosition(size.width / 2,75);
     layout.setAnchorPoint(0.5, 0.5);
     layout.setTag(12);
     this.addChild(layout);

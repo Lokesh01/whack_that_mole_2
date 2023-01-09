@@ -1,4 +1,6 @@
-var initialized_start_scene = false;
+var initialized_start_scene = false,
+play_btn_h_factor = 123.703703704;
+
 
 var FirstLayer = cc.Layer.extend({
   sprite: null,
@@ -13,15 +15,15 @@ var FirstLayer = cc.Layer.extend({
       x: size.width / 2,
       y: size.height / 2,
     });
-    this.sprite.setScale(1.25);
+    this.sprite.setScale(2);
     this.addChild(this.sprite, 0);
 
     // * start button
     var play_btn = new ccui.Button(res.play_btn_png, res.play_btn_inv_png);
-    play_btn.setScale(1.25);
-    play_btn.x = size.width / 2 - 8;
-    play_btn.y = size.height / 2 - 150;
-    play_btn.setLocalZOrder(10);
+    play_btn.setScale(2);
+    play_btn.x = size.width / 2 - 10;
+    play_btn.y = size.height / 2 - 250;
+    play_btn.setLocalZOrder(2);
     play_btn.addTouchEventListener(this.play, this);
     this.addChild(play_btn);
 

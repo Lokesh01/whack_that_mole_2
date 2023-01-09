@@ -27,7 +27,7 @@ var EndLayer = cc.Layer.extend({
 
     //layout for button
     var layout = new ccui.Layout();
-    layout.setContentSize(size.width * 0.1, size.height * 0.08);
+    layout.setContentSize(size.width * 0.2, size.height * 0.08);
     layout.setBackGroundColorType(ccui.Layout.BG_COLOR_SOLID);
     layout.setBackGroundColor(cc.color("#205295"));
     layout.setBackGroundColorOpacity(100);
