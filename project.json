@@ -14,7 +14,9 @@
     "jsList" : [
         "src/resource.js",
         "src/app.js",
-        "src/GameScreen.js",
-        "src/EndScreen.js"
+        "src/screens/GameScreen.js",
+        "src/screens/EndScreen.js",
+        "src/controller/utilFunctions.js",
+        "src/models/game_global.js"
     ]
 }

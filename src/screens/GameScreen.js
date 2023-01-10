@@ -1,7 +1,7 @@
 var initialized_game_scene = false;
-var score = 0;
+// var curr_score = 0;
 var score_board_text = "";
-var timer = 0;
+// var curr_timer = 0;
 var topMargin = 80;
 var timer_text = null;
 var mole_out_len = 35;
@@ -9,7 +9,6 @@ var mole_speed = 1.0;
 var mole_out_factor = 10;
 var minutes = 0;
 var seconds = 0;
-
 
 var gameScreenLayer = cc.Layer.extend({
   sprite: null,
@@ -48,10 +47,10 @@ var gameScreenLayer = cc.Layer.extend({
     ground_layer.y = 0;
     this.addChild(ground_layer);
 
-    //score layer
+    //curr_score layer
     score_board_text = new ccui.Text();
     score_board_text.attr({
-      string: "Score :" + score,
+      string: "Score :" + game_score.get_score,
       fontName: "Arial",
       fontSize: 32,
       x: size.width - 200,
@@ -60,7 +59,7 @@ var gameScreenLayer = cc.Layer.extend({
     score_board_text.setColor(cc.color(26, 18, 11));
     this.addChild(score_board_text, 1);
 
-    //timer layer
+    //curr_timer layer
     timer_text = new ccui.Text();
     timer_text.attr({
       string: "00:00",
@@ -142,18 +141,21 @@ var gameScreenLayer = cc.Layer.extend({
         show_action,
         mole_up,
         mole_down,
-        hide_action 
+        hide_action
       );
 
       random_mole.runAction(mole_seq);
     }, mole_speed * 2 + 0.5);
 
     this.schedule(function () {
-      timer++;
-      minutes = Math.floor(timer / 60);
-      seconds = Math.floor(timer % 60);
+      var prev_timer = game_timer.get_time;
+      game_timer.set_time=prev_timer+1;
+
+      var curr_timer = game_timer.get_time;
+      minutes = Math.floor(curr_timer / 60);
+      seconds = Math.floor(curr_timer % 60);
       timer_text.string =
-        pad_start((minutes + ""), 2, "0") + " : " + pad_start((seconds + ""), 2, "0");
+        utils.pad_start((minutes + ""), 2, "0") + " : " + utils.pad_start((seconds + ""), 2, "0");
     }, 1);
 
     //layout for finish button
@@ -162,7 +164,7 @@ var gameScreenLayer = cc.Layer.extend({
     layout.setBackGroundColorType(ccui.Layout.BG_COLOR_SOLID);
     layout.setBackGroundColor(cc.color("#850000"));
     layout.setBackGroundColorOpacity(100);
-    layout.setPosition(size.width / 2,75);
+    layout.setPosition(size.width / 2, 75);
     layout.setAnchorPoint(0.5, 0.5);
     layout.setTag(12);
     this.addChild(layout);
@@ -172,37 +174,34 @@ var gameScreenLayer = cc.Layer.extend({
     finishBtn.titleText = "Finish";
     finishBtn.titleFontSize = 25;
     finishBtn.setPosition(layout.width / 2.0, layout.height / 2.0);
-    finishBtn.addTouchEventListener(this.finishBtnEvent, this);
+    finishBtn.addTouchEventListener(function (sender, event) { utils.handleBtnEvent(sender, event, "end") }, this);
+    // finishBtn.addTouchEventListener(utils.handleBtnEvent.bind(this,"end"), this);
     layout.addChild(finishBtn);
 
     return true;
   },
 
-  finishBtnEvent: function (sender, event) {
-    if (event === ccui.Widget.TOUCH_BEGAN) {
-      var scene = new EndScene();
-      cc.director.pushScene(scene);
-    }
-  },
+  // finishBtnEvent: function (sender, event) {
+  //   if (event === ccui.Widget.TOUCH_BEGAN) {
+  //     var scene = new EndScene();
+  //     cc.director.pushScene(scene);
+  //   }
+  // },
 
-  scoreFunc: function(sender,event) {
-    if(event === ccui.Widget.TOUCH_BEGAN) {
-      score++;
-      if (mole_speed > 0.5 && mole_speed - parseInt(score / 10) * 0.1 > 0.2) {
-        mole_speed -= parseInt(score / 10) * 0.1;
+  scoreFunc: function (sender, event) {
+    if (event === ccui.Widget.TOUCH_BEGAN) {
+      var prev_score = game_score.get_score;
+      game_score.set_score = prev_score+1;
+
+      var curr_score = game_score.get_score;
+      if (mole_speed > 0.5 && mole_speed - parseInt(curr_score / 10) * 0.1 > 0.2) {
+        mole_speed -= parseInt(curr_score / 10) * 0.1;
       }
-      score_board_text.string = "Score :" + score;
+      score_board_text.string = "Score :" + curr_score;
     }
   }
 
 });
-
-var pad_start = function (string, targetLength, padString) {
-  while (string.length < targetLength) {
-    string = padString + string;
-  }
-  return string;
-};
 
 var GameScene = cc.Scene.extend({
   onEnter: function () {

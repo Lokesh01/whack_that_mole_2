@@ -17,7 +17,7 @@ var EndLayer = cc.Layer.extend({
     //score text
     var score_text = new ccui.Text();
     score_text.attr({
-      string: "Total Score: " + score,
+      string: "Total Score: " + game_score.get_score,
       fontName: "Arial",
       fontSize: 32,
       x: size.width / 2,
@@ -50,12 +50,12 @@ var EndLayer = cc.Layer.extend({
 
 var pop = function () {
   initialized_end_scene = false;
-  score = 0;
+  game_score.set_score = 0;
   minutes = 0;
   seconds = 0;
   timer = 0;
   timer_text.string = "00:00";
-  score_board_text.string = "Score: " + score;
+  score_board_text.string = "Score: " + game_score.get_score;
 
   cc.director.popScene();
 };

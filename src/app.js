@@ -1,5 +1,5 @@
 var initialized_start_scene = false,
-play_btn_h_factor = 123.703703704;
+  play_btn_h_factor = 123.703703704;
 
 
 var FirstLayer = cc.Layer.extend({
@@ -24,18 +24,19 @@ var FirstLayer = cc.Layer.extend({
     play_btn.x = size.width / 2 - 10;
     play_btn.y = size.height / 2 - 250;
     play_btn.setLocalZOrder(2);
-    play_btn.addTouchEventListener(this.play, this);
+    play_btn.addTouchEventListener(function (sender, event) { utils.handleBtnEvent(sender, event, "play") }, this);
     this.addChild(play_btn);
 
     return true;
   },
 
-  play: function (sender, type) {
-    if (type == ccui.Widget.TOUCH_BEGAN) {
-      var scene = new GameScene();
-      cc.director.pushScene(scene);
-    }
-  },
+  // play: function (sender, type) {
+  //   if (type == ccui.Widget.TOUCH_BEGAN) {
+  //     var scene = new GameScene();
+  //     cc.director.pushScene(scene);
+  //   }
+  // },
+
 });
 
 var FirstScene = cc.Scene.extend({
