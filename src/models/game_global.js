@@ -1,27 +1,37 @@
-var game_score = {
-    score: 0,
+var game_score, game_timer;
 
-    //getting curr score
-    get get_score() {
-        return this.score;
-    },
+game_score = {
+  score: 0,
 
-    //setting new score
-    set set_score(scr) {
-        this.score = scr;
-    }
-}
+  // getting curr score
+  get curr_score() {
+    'use strict';
 
-var game_timer = {
-    timer: 0,
+    return this.score;
+  },
 
-    //getting the curr time
-    get get_time() {
-        return this.timer;
-    },
+  // setting new score
+  set curr_score(scr) {
+    'use strict';
 
-    //setting timer
-    set set_time(tm) {
-        this.timer = tm;
-    }
-}
+    this.score = scr;
+  }
+};
+
+game_timer = {
+  timer: 0,
+
+  // setting timer
+  set time(tm) {
+    'use strict';
+
+    this.timer = tm;
+  },
+
+  // getting the curr time
+  get time() {
+    'use strict';
+
+    return this.timer;
+  }
+};

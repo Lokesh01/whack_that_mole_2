@@ -112,7 +112,7 @@ check_jshint()
 {
   for file in $STAGED_FILES; do
     if [[ ${file} =~ \.js$ ]]; then
-      $JSHINT $file ${CONF}
+      "$JSHINT" $file ${CONF}
       RETVAL=$?
       check_done $RETVAL "jshint" $file
     fi
@@ -155,7 +155,7 @@ check_coding_standards()
     # jscs parsing will break otherwise
     if [[ ${file} =~ \.js$ ]]; then
       sed -i -e "s/^import.*$/\/\*&\*\//g" $file
-      $JSCS $file
+      "$JSCS" $file
       RETVAL=$?
       check_done $RETVAL "jscs" $file
     fi

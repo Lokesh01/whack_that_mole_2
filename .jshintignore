@@ -1,0 +1,5 @@
+.tmp_staging/src/libs/underscore-min.js
+.tmp_staging/tools/*
+.tmp_staging/frameworks/**
+.tmp_staging/src/libs/bluebird.min.js
+.tmp_staging/res/images/**
