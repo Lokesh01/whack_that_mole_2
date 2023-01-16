@@ -1,5 +1,5 @@
 /* global ccui,cc,game_score,minutes:true,seconds:true,
-timer_text,timer:true,score_board_text */
+timer_text,game_timer,score_board_text */
 
 var initialized_end_scene = false,
   EndLayer,
@@ -69,7 +69,7 @@ pop = function () {
   game_score.curr_score = 0;
   minutes = 0;
   seconds = 0;
-  timer = 0;
+  game_timer.time = 0;
   timer_text.string = '00:00';
   score_board_text.string = 'Score: ' + game_score.curr_score;
 
